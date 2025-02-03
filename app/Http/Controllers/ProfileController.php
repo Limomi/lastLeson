@@ -14,9 +14,10 @@ use Illuminate\View\View;
 class ProfileController extends Controller
 {
     public function getUserRequest(){
-        $posts = Report::where('user_id', "=", Auth::user()->id);
+        $posts = Report::where('user_id', "=", Auth::user()->id)->get();
+        // $posts =Report::all();
 
-        return view('req/index', compact('posts'));
+        return view('req.index', compact('posts'));
     }
 
     /**
