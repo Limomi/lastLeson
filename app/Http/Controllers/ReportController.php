@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Report;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReportController extends Controller
 {
@@ -28,7 +29,30 @@ class ReportController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'address' => ['required', 'string', 'max:255'],
+                'contact' => ['required', 'string', 'max:255'],
+                'date' => ['required', 'date'],
+                'time' => ['required', 'string'],
+                'contact' => ['required', 'string', 'max:255'],
+                'payment' => ['required', 'string']
+            ]);
+
+
+
+        Report::create([
+            'address' =>$request->address,
+            'contact'=>$request->contact,
+            'date'=>$request->date,
+            'time'=>$request->time,
+            'payment'=>$request->payment,
+            'user_id'=>Auth::user()->id,
+            // 'user_id'=>0,
+            'service_id'=>1
+        ]);
+
+        return redirect() -> route('req.index');
     }
 
     /**

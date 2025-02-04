@@ -19,9 +19,9 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-// Route::get('/', function () {
-//     return view('req.index');
-// })->middleware(['auth', 'verified'])->name('');
+Route::get('/', function () {
+    return view('req.index');
+})->middleware(['auth', 'verified'])->name('/');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -31,7 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/', [ProfileController::class, 'getUserRequest']) ->name('req.index');
     Route::get('/make', [ReportController::class, 'index']) -> name("req.make");
 
-    Route::get('/report', [ReportController::class, 'store']) -> name('report.create');
+    Route::post('/report', [ReportController::class, 'store']) -> name('report.create');
 });
 
 require __DIR__.'/auth.php';

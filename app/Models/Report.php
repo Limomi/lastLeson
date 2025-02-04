@@ -10,6 +10,17 @@ class Report extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'address',
+        'contact',
+        'date',
+        'time',
+        'contact',
+        'payment',
+        'user_id',
+        'service_id'
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

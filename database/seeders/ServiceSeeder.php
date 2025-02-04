@@ -16,7 +16,7 @@ class ServiceSeeder extends Seeder
         Service::insert(
             [
                 [
-                    'title' => 'общий клиниг',
+                    'title' => 'Общий клиниг',
                 ],
                 [
                     'title' => 'Генеральная уборка',
